@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import d3 from 'd3';
 import DataCircles from './data-circles';
+import XYAxis from './x-y-axis';
 
 // returns the largest x and y coordinates from the dataset
 // second argument maps the data array to access the x and y coordinates
@@ -17,7 +18,7 @@ const xScale = (props) => {
 const yScale = (props) => {
   return d3.scale.linear()
     .domain([0, yMax(props.data)]) // the range of the data values (possible input values)
-    .range([props.padding, props.height - props.padding * 2]) //  the range of our chart (possible output values)
+    .range([props.height - props.padding, props.padding]) //  the range of our chart (possible output values)
 }
 
 
@@ -28,5 +29,6 @@ export default (props) => {
   const scales = { xScale: xScale(props), yScale: yScale(props) };
   return <svg width={props.width} height={props.height}>
     <DataCircles {...props} {...scales} />
+    <XYAxis {...props} {...scales} />
   </svg>
 }
