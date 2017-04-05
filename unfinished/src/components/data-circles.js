@@ -1,4 +1,6 @@
 import React from 'react';
+import CircleAnimate from './circle-animate';
+import ReactTransitionGroup from 'react-addons-transition-group';
 
 const renderCircles = (props) => {
   return (coords, index) => {
@@ -8,10 +10,14 @@ const renderCircles = (props) => {
       r: 2,
       key: index
     };
-    return <circle {...circleProps} />;
+    return <CircleAnimate {...circleProps} />;
   }
 }
 
 export default (props) => {
-  return <g>{ props.data.map(renderCircles(props)) }</g>
+  return <g>
+    <ReactTransitionGroup component='g'>
+      { props.data.map(renderCircles(props)) }
+    </ReactTransitionGroup>
+  </g>
 }
