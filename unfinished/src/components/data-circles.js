@@ -8,6 +8,7 @@ const renderCircles = (props) => {
       cx: props.xScale(coords[0]),
       cy: props.yScale(coords[1]),
       r: 2,
+      index: index,
       key: index
     };
     return <CircleAnimate {...circleProps} />;
